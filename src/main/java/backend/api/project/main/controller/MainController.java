@@ -10,7 +10,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class MainController {
 	
-	@GetMapping
+	/**
+	 * main data
+	 * @return
+	 */
+	@GetMapping("/main")
 	public ResponseEntity<?> mainData() {
 		Map<String, Object> resultMap = new HashMap();
 		
