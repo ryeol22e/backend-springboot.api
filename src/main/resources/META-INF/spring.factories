@@ -1,0 +1,1 @@
+org.springframework.boot.env.EnvironmentPostProcessor = backend.api.project.config.YamlEnvProcessor
