@@ -22,7 +22,8 @@ public class YamlEnvProcessor implements EnvironmentPostProcessor {
 	@Override
 	public void postProcessEnvironment(ConfigurableEnvironment environment, SpringApplication application) {
 		// TODO Auto-generated method stub
-		Resource path = new ClassPathResource("local/application-local.yml");
+		String activeProfile = environment.getActiveProfiles()[0];
+		Resource path = new ClassPathResource(activeProfile.concat("/application-").concat(activeProfile).concat(".yml"));
 		List<PropertySource<?>> propertySources = new ArrayList<PropertySource<?>>();
 		
 		try {
@@ -32,7 +33,6 @@ public class YamlEnvProcessor implements EnvironmentPostProcessor {
 			System.out.println("yaml error {} :" + e.getMessage());
 		}
 		
-		String activeProfile = environment.getActiveProfiles()[0];
 		MutablePropertySources envPropertyBox = environment.getPropertySources();
 		
 		// profile과 무관한 프로퍼티 파일
