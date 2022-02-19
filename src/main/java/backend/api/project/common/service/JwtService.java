@@ -17,8 +17,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Service
 public class JwtService {
-	@Value("${jwt.salt}")
-	private String salt;
+	@Value("${jwt.key}")
+	private String key;
 	@Value("${jwt.expmin}")
 	private Long expireMin;
 	
@@ -26,27 +26,25 @@ public class JwtService {
 		log.info("JWTService token create.");
 		final JwtBuilder builder = Jwts.builder();
 		
-		builder.setHeaderParam("typ", "JWT");
-		builder.setSubject("shoppingMall")
+		final String jwt = builder.setHeaderParam("typ", "JWT")
+			.setSubject("shoppingMall")
 			.setExpiration(new Date(System.currentTimeMillis()+1000*60*expireMin))
 			.claim("Member", member)
-			.claim("second", "others");
+			.claim("second", "others")
+			.signWith(SignatureAlgorithm.HS256, key.getBytes())
+			.compact();
 		
-		builder.signWith(SignatureAlgorithm.HS256, salt.getBytes());
-		final String jwt = builder.compact();
 		log.info("JWTService token create = {}", jwt);
 		
 		return jwt;
 	}
 	
 	public void checkValid(final String jwt) throws Exception {
-		Jwts.parser().setSigningKey(salt.getBytes()).parseClaimsJws(jwt);
+		Jwts.parser().setSigningKey(key.getBytes()).parseClaimsJws(jwt);
 	}
 	
 	public Map<String, Object> get(final String jwt) throws Exception {
-		Jws<Claims> claims = null;
-		
-		claims = Jwts.parser().setSigningKey(jwt.getBytes()).parseClaimsJws(jwt);
+		Jws<Claims> claims = Jwts.parser().setSigningKey(key.getBytes()).parseClaimsJws(jwt);
 		
 		return claims.getBody();
 		

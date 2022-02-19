@@ -14,7 +14,9 @@ public class LoginService {
 	 * @throws Exception
 	 */
 	public Member getMemberInfo(Member member) throws Exception {
-		return new Member();
+		member.setPassword(null);
+		
+		return member;
 	}
 
 }

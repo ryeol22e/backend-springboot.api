@@ -12,7 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Component
-public class JwtInterceptor implements HandlerInterceptor {
+public class ProjectInterceptor implements HandlerInterceptor {
 	@Autowired
 	private JwtService jwtService;
 	
@@ -20,12 +20,14 @@ public class JwtInterceptor implements HandlerInterceptor {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		// TODO Auto-generated method stub
+		log.info("request url is {}", request.getRequestURI());
 		boolean flag = false;
+		
 		if(request.getMethod().equals("OPTIONS")) {
 			flag = true;
 		} else {
 			String token = request.getHeader("Authorization");
-			log.info("interceptor token = {}", token);
+			
 			if(token!=null && token.length()>0) {
 				jwtService.checkValid(token);
 				flag = true;

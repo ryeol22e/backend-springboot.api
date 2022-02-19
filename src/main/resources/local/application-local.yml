@@ -11,5 +11,5 @@ server:
   
 jwt:
   expmin: 5
-  salt: MYSALT
+  key: jwt-secret-key
 
