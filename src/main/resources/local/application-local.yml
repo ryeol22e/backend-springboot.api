@@ -2,6 +2,10 @@ spring:
   profiles: local
 server:
   port: 9999
+  datasource: ENC()
+  username: ENC(Kst6lZGCytilU66gAu9zrA==)
+  password: ENC(u6DBhAmlPmgzxhUSF5VSpQ==)
+  
   
 jwt:
   expmin: 5
