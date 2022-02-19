@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -53,7 +54,7 @@ public class LoginController {
 		log.info("request jwt token = {}", jwt);
 		
 		jwtService.get(jwt);
-		result.put("auth-token", jwt);
+		result.put("Authorization", jwt);
 		result.put("memeber", member);
 		
 		return ResponseEntity.ok(result);

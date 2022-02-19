@@ -1,12 +1,15 @@
 spring:
   profiles: local
+#  datasource:
+#    url: ENC() 
+#    username: ENC(EY+HCJzLmq/i7ufUACFryw==)
+#    password: ENC(C0FAyNzGoGyfkiJlImCckw==)
+  
 server:
   port: 9999
-  datasource: ENC()
-  username: ENC(Kst6lZGCytilU66gAu9zrA==)
-  password: ENC(u6DBhAmlPmgzxhUSF5VSpQ==)
   
   
 jwt:
   expmin: 5
   salt: MYSALT
+

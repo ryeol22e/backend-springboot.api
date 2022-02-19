@@ -11,7 +11,7 @@ public class JasyptConfig {
 	
 	@Bean("jasyptSringEncryptor")
 	public StringEncryptor stringEncrtyptor() {
-		String key = new String("my_jasypt_key");
+		String key = new String("projectSecretKey");
 		PooledPBEStringEncryptor encryptor = new PooledPBEStringEncryptor();
 		SimpleStringPBEConfig config = new SimpleStringPBEConfig();
 		

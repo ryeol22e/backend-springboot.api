@@ -22,7 +22,7 @@ public class YamlEnvProcessor implements EnvironmentPostProcessor {
 	@Override
 	public void postProcessEnvironment(ConfigurableEnvironment environment, SpringApplication application) {
 		// TODO Auto-generated method stub
-		String activeProfile = environment.getActiveProfiles()[0];
+		String activeProfile = environment.getActiveProfiles().length>0 ? environment.getActiveProfiles()[0] : new String("test");
 		Resource path = new ClassPathResource(activeProfile.concat("/application-").concat(activeProfile).concat(".yml"));
 		List<PropertySource<?>> propertySources = new ArrayList<PropertySource<?>>();
 		

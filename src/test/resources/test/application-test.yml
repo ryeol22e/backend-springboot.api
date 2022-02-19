@@ -1,0 +1,11 @@
+spring:
+  profiles: test
+  datasource:
+    url: ENC()
+    username: ENC(EY+HCJzLmq/i7ufUACFryw==)
+    password: ENC(C0FAyNzGoGyfkiJlImCckw==)
+  
+  
+jwt:
+  expmin: 5
+  salt: MYSALT
